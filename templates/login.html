@@ -1,0 +1,347 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Styles for the custom message box */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .message-box-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <!-- Custom Message Box HTML -->
+    <div id="messageBoxOverlay" class="message-box-overlay hidden">
+        <div class="message-box-content">
+            <p id="messageBoxText" class="text-lg font-medium text-gray-800 mb-4"></p>
+            <button id="messageBoxClose" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">OK</button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50 rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">Your Name</a>
+            <div class="space-x-4 flex items-center">
+                <a href="#about" class="text-gray-700 hover:text-indigo-600 transition duration-300">About</a>
+                <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition duration-300">Skills</a>
+                <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition duration-300">Projects</a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition duration-300">Contact</a>
+                <!-- Login/Logout Button and User Status -->
+                <span id="userStatus" class="text-gray-600 text-sm ml-4"></span>
+                <button id="authButton" class="bg-indigo-500 text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-indigo-600 transition duration-300">
+                    Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Introduction) -->
+    <section id="hero" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 px-4 text-center rounded-b-lg shadow-lg">
+        <div class="container mx-auto">
+            <!-- Placeholder image for your profile picture -->
+            <img src="https://placehold.co/150x150/6366F1/FFFFFF?text=JP" alt="Your Profile Picture" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Hi, I'm <span class="text-yellow-300">Your Name</span>!</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                A passionate [Your Profession/Interest, e.g., Web Developer, Designer, Student]
+                who loves creating engaging and user-friendly experiences.
+            </p>
+            <a href="#projects" class="bg-white text-indigo-600 hover:bg-indigo-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-16 px-4 bg-white shadow-lg my-8 mx-auto max-w-5xl rounded-lg">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-10">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-8">
+                <div class="md:w-1/3 mb-6 md:mb-0">
+                    <!-- Another placeholder image or a relevant icon -->
+                    <img src="https://placehold.co/300x200/4F46E5/FFFFFF?text=About+Me" alt="About Me Illustration" class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
+                    <p class="mb-4">
+                        Hello! I'm [Your Name], and I'm currently exploring the exciting world of [Your Field].
+                        I have a strong interest in [Specific Interest, e.g., front-end development, graphic design, data analysis]
+                        and enjoy turning ideas into reality.
+                    </p>
+                    <p class="mb-4">
+                        My journey into [Your Field] began when [briefly explain how you started or what sparked your interest].
+                        I'm always eager to learn new technologies and improve my skills.
+                    </p>
+                    <p>
+                        Outside of [Your Field], I enjoy [Your Hobbies, e.g., hiking, reading, playing guitar].
+                        I believe in continuous learning and collaboration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-4 bg-gray-50 shadow-lg my-8 mx-auto max-w-5xl rounded-lg">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-10">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Skill Card 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl mb-3 text-blue-500">💻</div> <!-- Example icon (emoji) -->
+                    <h3 class="text-xl font-semibold text-gray-800">HTML5</h3>
+                    <p class="text-gray-600 text-sm">Structuring web content</p>
+                </div>
+                <!-- Skill Card 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl mb-3 text-purple-500">🎨</div>
+                    <h3 class="text-xl font-semibold text-gray-800">CSS3</h3>
+                    <p class="text-gray-600 text-sm">Styling and layout</p>
+                </div>
+                <!-- Skill Card 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl mb-3 text-yellow-500">🚀</div>
+                    <h3 class="text-xl font-semibold text-gray-800">JavaScript</h3>
+                    <p class="text-gray-600 text-sm">Interactive web pages</p>
+                </div>
+                <!-- Skill Card 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl mb-3 text-green-500">💡</div>
+                    <h3 class="text-xl font-semibold text-gray-800">Problem Solving</h3>
+                    <p class="text-gray-600 text-sm">Finding creative solutions</p>
+                </div>
+                <!-- Add more skill cards as needed -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl mb-3 text-red-500">✍️</div>
+                    <h3 class="text-xl font-semibold text-gray-800">Communication</h3>
+                    <p class="text-gray-600 text-sm">Clear and effective</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl mb-3 text-teal-500">🌐</div>
+                    <h3 class="text-xl font-semibold text-gray-800">Web Basics</h3>
+                    <p class="text-gray-600 text-sm">Fundamental understanding</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4 bg-white shadow-lg my-8 mx-auto max-w-5xl rounded-lg">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-10">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/400x250/A78BFA/FFFFFF?text=Project+1" alt="Project 1 Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Title One</h3>
+                        <p class="text-gray-600 text-sm mb-4">A brief description of your first project. What was its purpose? What technologies did you use?</p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/400x250/C4B5FD/FFFFFF?text=Project+2" alt="Project 2 Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Title Two</h3>
+                        <p class="text-gray-600 text-sm mb-4">Another project you worked on. Highlight its key features or your role in it.</p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/400x250/E0BBFF/FFFFFF?text=Project+3" alt="Project 3 Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Title Three</h3>
+                        <p class="text-gray-600 text-sm mb-4">Even if it's a small practice project, include it! Every step counts.</p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Add more project cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 bg-gradient-to-r from-purple-600 to-indigo-500 text-white text-center rounded-t-lg shadow-lg">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Get in Touch!</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">
+                I'm always open to new opportunities and collaborations. Feel free to reach out!
+            </p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:your.email@example.com" class="bg-white text-purple-700 hover:bg-purple-100 font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    Email Me
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="bg-white text-blue-700 hover:bg-blue-100 font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/yourusername" target="_blank" class="bg-white text-gray-800 hover:bg-gray-200 font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4 text-center rounded-t-lg">
+        <div class="container mx-auto">
+            <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+            <p class="text-sm mt-2">Built with ❤️ and Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Dynamically set the current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Firebase imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, query, where, onSnapshot, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Custom Message Box functions
+        function showMessageBox(message) {
+            document.getElementById('messageBoxText').textContent = message;
+            document.getElementById('messageBoxOverlay').classList.remove('hidden');
+        }
+
+        document.getElementById('messageBoxClose').addEventListener('click', () => {
+            document.getElementById('messageBoxOverlay').classList.add('hidden');
+        });
+
+        // Initialize Firebase
+        let app;
+        let auth;
+        let db;
+        let currentUserId = null;
+        let isAuthReady = false; // Flag to ensure Firestore operations wait for auth
+
+        try {
+            // Global variables __firebase_config and __app_id are provided by the Canvas environment
+            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+
+            const authButton = document.getElementById('authButton');
+            const userStatusSpan = document.getElementById('userStatus');
+
+            // Listen for authentication state changes
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUserId = user.uid;
+                    userStatusSpan.textContent = `Welcome, ${currentUserId}`;
+                    authButton.textContent = 'Logout';
+                    isAuthReady = true;
+                    console.log("User logged in:", currentUserId);
+
+                    // Example: Try to get or create a user document in Firestore (private data)
+                    // This is just a demonstration. You can remove this or expand on it.
+                    const userDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/profile`, 'user_data');
+                    try {
+                        const docSnap = await getDoc(userDocRef);
+                        if (!docSnap.exists()) {
+                            await setDoc(userDocRef, {
+                                lastLogin: new Date().toISOString(),
+                                createdAt: new Date().toISOString()
+                            });
+                            console.log("User profile created in Firestore.");
+                        } else {
+                            await setDoc(userDocRef, {
+                                lastLogin: new Date().toISOString()
+                            }, { merge: true });
+                            console.log("User profile updated in Firestore.");
+                        }
+                    } catch (e) {
+                        console.error("Error accessing user profile in Firestore:", e);
+                        showMessageBox("Error accessing user data. Check console for details.");
+                    }
+
+                } else {
+                    currentUserId = null;
+                    userStatusSpan.textContent = '';
+                    authButton.textContent = 'Login';
+                    isAuthReady = true; // Auth state is known, even if not logged in
+                    console.log("User logged out or not authenticated.");
+                }
+            });
+
+            // Handle Login/Logout button click
+            authButton.addEventListener('click', async () => {
+                if (auth.currentUser) {
+                    // User is logged in, so log out
+                    try {
+                        await signOut(auth);
+                        showMessageBox("You have been logged out.");
+                    } catch (error) {
+                        console.error("Error signing out:", error);
+                        showMessageBox("Error logging out. Please try again.");
+                    }
+                } else {
+                    // User is logged out, attempt to log in anonymously or with custom token
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined') {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                            showMessageBox("Logged in with custom token!");
+                        } else {
+                            await signInAnonymously(auth);
+                            showMessageBox("Logged in anonymously!");
+                        }
+                    } catch (error) {
+                        console.error("Error signing in:", error);
+                        showMessageBox("Error logging in. Please try again.");
+                    }
+                }
+            });
+
+            // Initial authentication check when the page loads
+            // This ensures that onAuthStateChanged is triggered immediately
+            if (!auth.currentUser) {
+                if (typeof __initial_auth_token !== 'undefined') {
+                    await signInWithCustomToken(auth, __initial_auth_token).catch(e => console.error("Initial custom token sign-in failed:", e));
+                } else {
+                    await signInAnonymously(auth).catch(e => console.error("Initial anonymous sign-in failed:", e));
+                }
+            }
+
+        } catch (e) {
+            console.error("Firebase initialization failed:", e);
+            showMessageBox("Failed to initialize Firebase. Check console for details.");
+        }
+    </script>
+</body>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+</html>
