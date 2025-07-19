@@ -1,6 +1,6 @@
 # PAUPAU
 
-![Optional Screenshot/Logo](static/static_root/img/babysaja.png) This is a practice project involving portfolio making and tweet. MY SHAYLA
+![Optional Screenshot/Logo](static/static_root/img/babysaja.png) This is a practice project involving portfolio making and tweet. MY SHAYLA BABY
 
 ## Table of Contents
 - [About](#about)

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1adecfdd-9d02-4159-97ef-17000722769d" name="Changes" comment="Initial commit of Django project" />
+    <list default="true" id="1adecfdd-9d02-4159-97ef-17000722769d" name="Changes" comment="Initial commit of Django project">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +110,7 @@
       <updated>1752584172295</updated>
       <workItem from="1752584173402" duration="3987000" />
       <workItem from="1752748726888" duration="6875000" />
-      <workItem from="1752810089308" duration="8131000" />
+      <workItem from="1752810089308" duration="9823000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of Django project">
       <option name="closed" value="true" />
